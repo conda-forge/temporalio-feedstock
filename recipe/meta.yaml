@@ -15,7 +15,7 @@ build:
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     - cd temporalio/bridge
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-  number: 1
+  number: 0
 
 requirements:
   build:
