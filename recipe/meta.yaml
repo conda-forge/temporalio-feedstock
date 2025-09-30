@@ -1,5 +1,5 @@
 {% set name = "temporalio" %}
-{% set version = "1.16.0" %}
+{% set version = "1.18.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/temporalio-{{ version }}.tar.gz
-  sha256: dd926f3e30626fd4edf5e0ce596b75ecb5bbe0e4a0281e545ac91b5577967c91
+  sha256: 46394498f8822e61b3ce70d6735de7618f5af0501fb90f3f90f4b4f9e7816d77
 
 build:
   skip: true  # [win]
