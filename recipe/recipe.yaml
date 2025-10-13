@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: temporalio
-  version: 1.16.0
+  version: 1.18.1
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/temporalio-${{ version }}.tar.gz
-  sha256: dd926f3e30626fd4edf5e0ce596b75ecb5bbe0e4a0281e545ac91b5577967c91
+  sha256: 46394498f8822e61b3ce70d6735de7618f5af0501fb90f3f90f4b4f9e7816d77
 
 build:
-  number: 1
+  number: 0
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -23,16 +23,15 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    - if: build_platform != target_platform
-      then: maturin >=1.0,<2.0
-    - cargo-bundle-licenses
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=1.0,<2.0
+    - ${{ compiler('rust') }}
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
-    - ${{ compiler('rust') }}
     - libprotobuf
+    - cargo-bundle-licenses
   host:
     - python
     - maturin >=1.0,<2.0
@@ -40,7 +39,7 @@ requirements:
   run:
     - python
     - nexus-rpc ==1.1.0
-    - protobuf >=3.20,<6
+    - protobuf >=3.20,<7
     - if: match(python, "<3.11")
       then: python-dateutil >=2.8.2,<3
     - types-protobuf >=3.20
@@ -50,11 +49,7 @@ tests:
   - python:
       imports:
         - temporalio
-  - requirements:
-      run:
-        - pip
-    script:
-      - pip check
+      pip_check: true
 
 about:
   summary: Temporal.io Python SDK
