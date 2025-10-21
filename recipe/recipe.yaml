@@ -1,32 +1,38 @@
-{% set name = "temporalio" %}
-{% set version = "1.16.0" %}
+schema_version: 1
+
+context:
+  name: temporalio
+  version: 1.18.1
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/temporalio-{{ version }}.tar.gz
-  sha256: dd926f3e30626fd4edf5e0ce596b75ecb5bbe0e4a0281e545ac91b5577967c91
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/temporalio-${{ version }}.tar.gz
+  sha256: 46394498f8822e61b3ce70d6735de7618f5af0501fb90f3f90f4b4f9e7816d77
 
 build:
-  skip: true  # [win]
+  number: 0
+  skip: win
   script:
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     - cd temporalio/bridge
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
   number: 1
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - maturin >=1.0,<2.0                     # [build_platform != target_platform]
-    - cargo-bundle-licenses
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
-    - {{ compiler('rust') }}
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - maturin >=1.0,<2.0
+    - ${{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
     - libprotobuf
+    - cargo-bundle-licenses
   host:
     - python
     - maturin >=1.0,<2.0
@@ -34,21 +40,19 @@ requirements:
   run:
     - python
     - nexus-rpc ==1.1.0
-    - protobuf >=3.20,<6
-    - python-dateutil >=2.8.2,<3  # [py<311]
+    - protobuf >=3.20,<7
+    - if: match(python, "<3.11")
+      then: python-dateutil >=2.8.2,<3
     - types-protobuf >=3.20
     - typing_extensions >=4.2.0,<5
 
-test:
-  imports:
-    - temporalio
-  commands:
-    - pip check
-  requires:
-    - pip
+tests:
+  - python:
+      imports:
+        - temporalio
+      pip_check: true
 
 about:
-  home: https://github.com/temporalio/sdk-python
   summary: Temporal.io Python SDK
   license: MIT
   license_file:
@@ -60,6 +64,7 @@ about:
     - temporalio/bridge/sdk-core/fsm/LICENSE.txt
     - temporalio/bridge/sdk-core/fsm/rustfsm_trait/LICENSE.txt
     - temporalio/bridge/sdk-core/fsm/rustfsm_procmacro/LICENSE.txt
+  homepage: https://github.com/temporalio/sdk-python
 
 extra:
   recipe-maintainers:
@@ -67,3 +72,4 @@ extra:
     - dgasmith
     - nic-chira
     - fzding
+    - chrisdeutsch
