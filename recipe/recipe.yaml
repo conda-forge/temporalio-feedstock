@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: temporalio
-  version: 1.18.1
+  version: 1.18.2
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/temporalio-${{ version }}.tar.gz
-  sha256: 46394498f8822e61b3ce70d6735de7618f5af0501fb90f3f90f4b4f9e7816d77
+  sha256: b6ecb43562988ac698eef155d9c2527fa6c53a2ae564cb4787421499a0269599
 
 build:
-  number: 1
+  number: 0
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -39,12 +39,11 @@ requirements:
   run:
     - python
     - nexus-rpc ==1.1.0
-    - protobuf >=3.20,<7
+    - protobuf >=3.20,<7.0.0
     - if: match(python, "<3.11")
       then: python-dateutil >=2.8.2,<3
     - types-protobuf >=3.20
     - typing_extensions >=4.2.0,<5
-
 tests:
   - python:
       imports:
