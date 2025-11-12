@@ -13,7 +13,7 @@ source:
   sha256: b6ecb43562988ac698eef155d9c2527fa6c53a2ae564cb4787421499a0269599
 
 build:
-  number: 0
+  number: 1
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -63,6 +63,7 @@ about:
     - temporalio/bridge/sdk-core/fsm/rustfsm_trait/LICENSE.txt
     - temporalio/bridge/sdk-core/fsm/rustfsm_procmacro/LICENSE.txt
   homepage: https://github.com/temporalio/sdk-python
+  repository: https://github.com/temporalio/sdk-python
 
 extra:
   recipe-maintainers:

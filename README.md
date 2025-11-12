@@ -9,6 +9,8 @@ Package license: MIT
 
 Summary: Temporal.io Python SDK
 
+Development: https://github.com/temporalio/sdk-python
+
 Current build status
 ====================
 
