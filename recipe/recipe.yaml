@@ -57,11 +57,9 @@ about:
     - LICENSE
     - temporalio/bridge/THIRDPARTY.yml
     - temporalio/bridge/sdk-core/LICENSE.txt
-    - temporalio/bridge/sdk-core/sdk-core-protos/protos/api_cloud_upstream/LICENSE
-    - temporalio/bridge/sdk-core/sdk-core-protos/protos/api_upstream/LICENSE
-    - temporalio/bridge/sdk-core/fsm/LICENSE.txt
-    - temporalio/bridge/sdk-core/fsm/rustfsm_trait/LICENSE.txt
-    - temporalio/bridge/sdk-core/fsm/rustfsm_procmacro/LICENSE.txt
+    - temporalio/bridge/sdk-core/crates/common/protos/api_cloud_upstream/LICENSE
+    - temporalio/bridge/sdk-core/crates/common/protos/api_upstream/LICENSE
+    - temporalio/bridge/sdk-core/crates/macros/LICENSE.txt
   homepage: https://github.com/temporalio/sdk-python
   repository: https://github.com/temporalio/sdk-python
 
