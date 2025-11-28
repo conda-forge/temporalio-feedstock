@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: temporalio
-  version: 1.18.2
+  version: 1.20.0
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/temporalio-${{ version }}.tar.gz
-  sha256: b6ecb43562988ac698eef155d9c2527fa6c53a2ae564cb4787421499a0269599
+  sha256: 5a6a85b7d298b7359bffa30025f7deac83c74ac095a4c6952fbf06c249a2a67c
 
 build:
-  number: 1
+  number: 0
   skip: win
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -38,7 +38,7 @@ requirements:
     - pip
   run:
     - python
-    - nexus-rpc ==1.1.0
+    - nexus-rpc ==1.2.0
     - protobuf >=3.20,<7.0.0
     - if: match(python, "<3.11")
       then: python-dateutil >=2.8.2,<3
@@ -57,11 +57,9 @@ about:
     - LICENSE
     - temporalio/bridge/THIRDPARTY.yml
     - temporalio/bridge/sdk-core/LICENSE.txt
-    - temporalio/bridge/sdk-core/sdk-core-protos/protos/api_cloud_upstream/LICENSE
-    - temporalio/bridge/sdk-core/sdk-core-protos/protos/api_upstream/LICENSE
-    - temporalio/bridge/sdk-core/fsm/LICENSE.txt
-    - temporalio/bridge/sdk-core/fsm/rustfsm_trait/LICENSE.txt
-    - temporalio/bridge/sdk-core/fsm/rustfsm_procmacro/LICENSE.txt
+    - temporalio/bridge/sdk-core/crates/common/protos/api_cloud_upstream/LICENSE
+    - temporalio/bridge/sdk-core/crates/common/protos/api_upstream/LICENSE
+    - temporalio/bridge/sdk-core/crates/macros/LICENSE.txt
   homepage: https://github.com/temporalio/sdk-python
   repository: https://github.com/temporalio/sdk-python
 
