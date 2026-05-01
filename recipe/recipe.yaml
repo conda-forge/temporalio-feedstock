@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: temporalio
-  version: "1.26.0"
+  version: "1.27.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/temporalio-${{ version }}.tar.gz
-  sha256: f4bfb35125e6f5e8c7f7ed1277c7354d812c6fac7ed5f8dbd50536cf289aaaa7
+  sha256: fb92ae1077967ec626375a034af7e7108fe65f7b4ab1d98798ac2eecab247a65
 
 build:
   number: 0
