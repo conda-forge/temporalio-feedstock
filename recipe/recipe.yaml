@@ -57,9 +57,8 @@ about:
     - LICENSE
     - temporalio/bridge/THIRDPARTY.yml
     - temporalio/bridge/sdk-core/LICENSE.txt
-    - temporalio/bridge/sdk-core/crates/common/protos/api_cloud_upstream/LICENSE
-    - temporalio/bridge/sdk-core/crates/common/protos/api_upstream/LICENSE
-    - temporalio/bridge/sdk-core/crates/macros/LICENSE.txt
+    - temporalio/bridge/sdk-core/crates/protos/protos/api_cloud_upstream/LICENSE
+    - temporalio/bridge/sdk-core/crates/protos/protos/api_upstream/LICENSE
   homepage: https://github.com/temporalio/sdk-python
   repository: https://github.com/temporalio/sdk-python
 
